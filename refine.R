@@ -17,4 +17,11 @@ sales$company = company_clean("akzo",sales$company)
 sales$company = company_clean("van houten",sales$company)
 sales$company = company_clean("unilever",sales$company)
 
-sales$company
+#Seperating Product code and product number
+sales <- separate(sales,"Product.code...number",into = c("product_code","product_number"),sep="-")
+
+#Adding product category
+sales <-mutate(sales,product_cat = ifelse(sales$product_code == "p","smartphone",ifelse(sales$product_code == "x","laptop",ifelse(sales$product_code == "v","tv","tablet"))))
+sales
+
+
