@@ -6,7 +6,7 @@ sales <- tbl_df(salescsv)
 
 company_clean <- function(x,y) {
   for (i in 1:length(y)){
-    if (stringdist(x,y[i]) < 4)
+    if (stringdist(x,y[i]) < 5)
       y[i] = x
     }
   return(y)
@@ -35,5 +35,8 @@ sales <- mutate(sales,product_smartphone = as.numeric((product_code == "p")))
 sales <- mutate(sales,product_tv = as.numeric((product_code == "v")))
 sales <- mutate(sales,product_laptop = as.numeric((product_code == "x")))
 sales <- mutate(sales,product_tablet = as.numeric((product_code == "q")))
+
+#Writing the csv file
+write.csv(sales,file = "refine_clean.csv")
 
 View(sales)
